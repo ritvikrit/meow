@@ -1,16 +1,15 @@
 from langchain_openai import ChatOpenAI
 from orchestrator.langgraph_supervisor import build_workflow
 
-model = ChatOpenAI(model="gpt-4o")
 
-workflow = build_workflow(model)
-app = workflow.compile()
+def main():
+    model = ChatOpenAI(model="gpt-4o")
 
-result = app.invoke({
-    "messages": [
-        {"role": "user", "content": "what is 12 * 8?"}
-    ]
-})
+    workflow = build_workflow(model)
+    app = workflow.compile()
 
-for m in result["messages"]:
-    m.pretty_print()
+    # App is ready to be used (FastAPI / CLI / scripts)
+
+
+if __name__ == "__main__":
+    main()
